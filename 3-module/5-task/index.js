@@ -1,3 +1,4 @@
 function getMinMax(str) {
-  // ваш код...
+  let lst = str.split(" ").filter((item) => isFinite(item)).map((item) => +item);
+  return {min: Math.min(...lst), max: Math.max(...lst)}
 }
