@@ -1,5 +1,5 @@
 function makeFriendsList(friends) {
-  friend = document.createElement("ul");
+  let friend = document.createElement("ul");
   friends.forEach((item) => {
     friend.innerHTML += `<li> ${item.firstName} ${item.lastName}</li>`;
   });
