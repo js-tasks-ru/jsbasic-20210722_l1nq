@@ -18,7 +18,7 @@ function print(text) {
  * @returns {boolean}
  */
 function isValid(name) {
-  name.length > 4;
+  // ваш код...
 }
 
 /**
