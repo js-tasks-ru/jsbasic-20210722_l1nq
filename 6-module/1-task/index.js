@@ -21,6 +21,7 @@ export default class UserTable {
     this.createEvent();
 
   }
+  
   createElem() {
     this.elem = document.createElement("table");
     this.elem.innerHTML = `
