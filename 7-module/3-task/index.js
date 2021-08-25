@@ -1,16 +1,16 @@
 export default class StepSlider {
-  constructor({ steps, value = 0 }) {
+  constructor({ steps, value = 2 }) {
     this.steps = steps;
-    this.render();
+    this.render(value);
     this.elem.addEventListener("click", this.onClick);
   }
 
-  render = () => {
+  render = (value) => {
     this.elem = document.createElement("div");
     this.elem.classList.add("slider");
     this.elem.innerHTML = `
     <div class="slider__thumb">
-      <span class="slider__value">0</span>
+      <span class="slider__value">${value}</span>
     </div>
     <div class="slider__progress"></div>
     <div class="slider__steps">
