@@ -39,7 +39,6 @@ export default class StepSlider {
       let stepSlider = this.elem.getBoundingClientRect().width / (this.steps - 1);
       let mouseX = event.pageX - this.elem.getBoundingClientRect().x;
 
-      console.log(mouseX);
 
       if (0 < mouseX && this.elem.getBoundingClientRect().width > mouseX) {
         this.findSpan = Math.round(mouseX / stepSlider);
@@ -75,10 +74,10 @@ export default class StepSlider {
 
       console.log(this.elem.querySelector('.slider__progress').style.width, this.elem.querySelector('.slider__thumb').style.left);
 
-      // this.elem.dispatchEvent(new CustomEvent('slider-change', { 
-      //   detail: this.findSpan,
-      //   bubbles: true 
-      // }));
+      this.elem.dispatchEvent(new CustomEvent('slider-change', { 
+        detail: this.findSpan,
+        bubbles: true 
+      }));
     };
 
     document.documentElement.addEventListener("pointerup", forPointerUp);
