@@ -1,5 +1,5 @@
 export default class StepSlider {
-  constructor({ steps, value = 2 }) {
+  constructor({ steps, value = 0 }) {
     this.steps = steps;
     this.render(value);
     this.elem.addEventListener("click", this.onClick);
