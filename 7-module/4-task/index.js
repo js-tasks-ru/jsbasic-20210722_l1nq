@@ -1,16 +1,17 @@
 export default class StepSlider {
-  constructor({ steps, value = 0 }) {
+  constructor({ steps, value = 2 }) {
     this.steps = steps;
-    this.render(value);
+    this.value = value;
+    this.render();
     this.elem.querySelector(".slider__thumb").addEventListener("pointerdown", this.onClick);
   }
 
-  render = (value) => {
+  render = () => {
     this.elem = document.createElement("div");
     this.elem.classList.add("slider");
     this.elem.innerHTML = `
     <div class="slider__thumb">
-      <span class="slider__value">${value}</span>
+      <span class="slider__value">${this.value}</span>
     </div>
     <div class="slider__progress"></div>
     <div class="slider__steps">
@@ -21,6 +22,11 @@ export default class StepSlider {
     for (let i = 0; i < this.steps - 1 ;i++) {
       this.elem.querySelector(".slider__steps").innerHTML += "<span></span>";
     }
+    this.findSpan = this.value;
+    this.percentageSlider = (this.value / (this.steps - 1)) * 100 ;
+    this.elem.querySelector('.slider__thumb').style.left = `${this.percentageSlider}%`;
+    this.elem.querySelector('.slider__progress').style.width = `${this.percentageSlider}%`;
+    this.elem.querySelector(".slider__value").innerHTML = this.findSpan;
   }
 
   onClick = (event) => {
@@ -60,11 +66,6 @@ export default class StepSlider {
 
 
     let forPointerUp = (event) => {
-
-      if (this.findSpan == undefined) {
-        this.findSpan = 0;
-        this.percentageSlider = "0";
-      }
 
       document.documentElement.removeEventListener("pointermove", forMove);
       this.elem.querySelector('.slider__thumb').style.left = `${this.percentageSlider}%`;
