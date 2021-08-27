@@ -3,7 +3,8 @@ export default class StepSlider {
     this.steps = steps;
     this.value = value;
     this.render();
-    this.elem.querySelector(".slider__thumb").addEventListener("pointerdown", this.onClick);
+    this.elem.querySelector(".slider__thumb").addEventListener("pointerdown", this.onPointerDown);
+    this.elem.addEventListener("click", this.onClick);
   }
 
   render = () => {
@@ -30,6 +31,30 @@ export default class StepSlider {
   }
 
   onClick = (event) => {
+    for (let i of this.elem.querySelector(".slider__steps").children) {
+      i.classList.remove("slider__step-active");
+    }
+
+    let stepSlider = this.elem.getBoundingClientRect().width / (this.steps - 1);
+    let mouseX = event.pageX - this.elem.getBoundingClientRect().x;
+    let findSpan = Math.round(mouseX / stepSlider);
+
+    this.elem.querySelector(".slider__steps").children[findSpan].classList.add("slider__step-active");
+
+    let percentageSlider = 100 / (this.steps - 1) * findSpan;
+
+    this.elem.querySelector('.slider__thumb').style.left = `${percentageSlider}%`;
+    this.elem.querySelector('.slider__progress').style.width = `${percentageSlider}%`;
+
+    this.elem.querySelector(".slider__value").innerHTML = findSpan;
+
+    this.elem.dispatchEvent(new CustomEvent('slider-change', {
+      detail: findSpan, 
+      bubbles: true
+    }));
+  }
+
+  onPointerDown = (event) => {
 
     this.elem.querySelector('.slider__thumb').ondragstart = () => false;
     this.elem.classList.add("slider_dragging");
