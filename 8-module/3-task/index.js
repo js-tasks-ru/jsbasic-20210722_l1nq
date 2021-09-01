@@ -3,7 +3,6 @@ export default class Cart {
 
   constructor(cartIcon) {
     this.cartIcon = cartIcon;
-    console.log("start");
   }
 
   addProduct(product) {
@@ -16,7 +15,6 @@ export default class Cart {
             this.cartItems[i].count += 1;
             break;
           } else if (i + 1 == end) {
-            console.log("end");
             this.cartItems.push({"product": product, "count": 1 });
           }
           i++;
@@ -37,7 +35,6 @@ export default class Cart {
         }
       }
     }
-    console.log(this.cartItems.length);
     this.onProductUpdate(this.cartItem);
   }
 
