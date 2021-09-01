@@ -21,6 +21,7 @@ export default class CartIcon {
           <span class="cart-icon__price">€${cart.getTotalPrice().toFixed(2)}</span>
         </div>`;
 
+      
       this.updatePosition();
 
       this.elem.classList.add('shake');
@@ -39,6 +40,26 @@ export default class CartIcon {
   }
 
   updatePosition() {
-    // ваш код ...
+    let initialTopCoord = "";
+    if (initialTopCoord) {
+      initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
+    }
+    if (this.elem.offsetWidth) {
+      if (window.pageYOffset > initialTopCoord && document.body.clientWidth > 767) {
+        document.querySelector(".cart-icon").style.position = "fixed";
+        document.querySelector(".cart-icon").style.zIndex = "1000";
+        document.querySelector(".cart-icon").style.marginRight = "";
+        if (document.querySelector(".container").children[0].getBoundingClientRect().right + this.elem.getBoundingClientRect().width + 30 < document.body.clientWidth) {
+          this.elem.style.left = document.querySelector(".container").children[0].getBoundingClientRect().right + 20 + "px";
+        } else {
+          this.elem.style.left = document.body.clientWidth - this.elem.getBoundingClientRect().width + 6 + "px";
+        }
+      } else {
+        document.querySelector(".cart-icon").style.position = "";
+        document.querySelector(".cart-icon").style.zIndex = "";
+        document.querySelector(".cart-icon").style.marginRight = "";
+        document.querySelector(".cart-icon").style.left = "";
+      }
+    }
   }
 }
