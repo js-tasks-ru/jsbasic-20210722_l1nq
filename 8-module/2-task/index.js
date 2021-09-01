@@ -24,7 +24,6 @@ export default class ProductGrid {
   updateFilter(filter) {
     Object.assign(this.filters, filter);
     let arr = this.products.slice();
-    console.log(arr);
     for (let j of this.products) {
       if (j.spiciness > this.filters.maxSpiciness) {
         if (arr.includes(j)) {
@@ -34,7 +33,6 @@ export default class ProductGrid {
 
       if (this.filters.noNuts) {
         if (j.hasOwnProperty('nuts')) {
-          console.log(j);
           if (arr.includes(j)) {
             arr.splice(arr.indexOf(j), 1);
           }
@@ -65,6 +63,5 @@ export default class ProductGrid {
       let productCard = new ProductCard(i);
       document.querySelector(".products-grid__inner").append(productCard.elem);
     }
-    console.log(arr);
   }
 }

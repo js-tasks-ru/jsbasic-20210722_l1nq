@@ -44,7 +44,7 @@ export default class CartIcon {
     if (initialTopCoord) {
       initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
     }
-    if (document.querySelector(".cart-icon").offsetWidth) {
+    if (this.elem.offsetWidth) {
       if (window.pageYOffset > initialTopCoord && document.body.clientWidth > 767) {
         document.querySelector(".cart-icon").style.position = "fixed";
         document.querySelector(".cart-icon").style.zIndex = "1000";
