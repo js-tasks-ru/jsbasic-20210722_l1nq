@@ -133,9 +133,9 @@ export default class Cart {
 
     document.querySelectorAll(".cart-product").forEach((item) => {
       item.addEventListener("click", (event) => {
-        if (event.target.alt == "minus") {
+        if (event.target.closest('.cart-counter__button_minus')) {
           this.updateProductCount(event.currentTarget.dataset.productId, -1);
-        } else if (event.target.alt == "plus") {
+        } else if (event.target.closest('.cart-counter__button_plus')) {
           this.updateProductCount(event.currentTarget.dataset.productId, 1);
         }
       });
