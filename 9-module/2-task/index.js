@@ -29,7 +29,7 @@ export default class Main {
 
     document.querySelector("div[data-cart-icon-holder]").append(this.cartIcon.elem);
     
-    fetch("products.json")
+    return fetch("products.json")
     .then(result => result.json())
     .then(result => {
       this.productsGrid = new ProductsGrid(result);
