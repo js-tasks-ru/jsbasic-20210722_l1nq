@@ -33,14 +33,16 @@ export default class ProductGrid {
 
       if (this.filters.noNuts) {
         if (j.hasOwnProperty('nuts')) {
-          if (arr.includes(j)) {
-            arr.splice(arr.indexOf(j), 1);
+          if (j.nuts == true) {
+            if (arr.includes(j)) {
+              arr.splice(arr.indexOf(j), 1);
+            }
           }
         }
       }
 
       if (this.filters.vegeterianOnly) {
-        if (!j.hasOwnProperty("vegeterian")) {
+        if (j.vegeterian == false || !j.hasOwnProperty("vegeterian")) {
           if (arr.includes(j)) {
             arr.splice(arr.indexOf(j), 1);
           }
